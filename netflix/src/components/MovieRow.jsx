@@ -13,10 +13,10 @@ const MovieRow = ({key, title, movies}) => {
       
       <div className='flex space-x-3 overflow-x-scroll no-scrollbar'>
         {movies.map(movie => {
-          console.log("Movie Id: " +movie.id)
+          console.log("Movie Id: " + movie.id)
           return (
 
-          <MovieTile key={movie.id} imagesrc={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} title={movie.title}/>
+          <MovieTile key={movie.id} imagesrc={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} title={movie.title || movie.name}/>
             
         )})}
       </div>

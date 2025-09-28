@@ -17,7 +17,7 @@ export async function getTrendingMovies() {
   try {
     const response = await tmbd.get("/trending/movie/day")
     return response.data.results //array of movies
-    
+
   } catch (error) {
     console.log("Error fetching trending movies: " + error)
   }
@@ -59,3 +59,35 @@ export async function getNowPlayingMovies() {
   }
 }
 
+export async function getTrendingTV() {
+  try {
+    const response = await tmbd.get("/trending/tv/day")
+    return response.data.results
+  } catch (error) {
+    console.log("Error fetching trending TV shows: " + error)
+  }
+}
+export async function getPopularTV() {
+  try {
+    const response = await tmbd.get("/tv/popular")
+    return response.data.results
+  } catch (error) {
+    console.log("Error fetching popular TV shows: " + error)
+  }
+}
+export async function getTopRatedTV() {
+  try {
+    const response = await tmbd.get("/tv/top_rated")
+    return response.data.results
+  } catch (error) {
+    console.log("Error fetching top_rated TV shows: " + error)
+  }
+}
+export async function getOnAirTV() {
+  try {
+    const response = await tmbd.get("/tv/on_the_air")
+    return response.data.results
+  } catch (error) {
+    console.log("Error fetching on_the_air TV shows: " + error)
+  }
+}

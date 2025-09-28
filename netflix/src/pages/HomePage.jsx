@@ -6,13 +6,15 @@ import {
   getTopRatedMovies,
   getPopularMovies,
   getUpcomingMovies,
-  getNowPlayingMovies
+  getNowPlayingMovies,
+  getOnAirTV
 } from '../utils/tmdbapi'
 
 const categories = {
   trending: "Trending",
   popular: "Popular Movies",
   topRated: "Top Rated Movies",
+  onAir: "Currently Airing TV Shows",
   upComing: "Upcoming Movies",
   nowPlaying: "Now Playing"
 }
@@ -24,16 +26,18 @@ const HomePage = () => {
     trending: [],
     popular: [],
     topRated: [],
+    onAir: [],
     upComing: [],
     nowPlaying: []
   })
 
   useEffect(() => {
     async function fetchData() {
-      const [trending, popular, topRated, upComing, nowPlaying] = await Promise.all([
+      const [trending, popular, topRated, onAir, upComing, nowPlaying] = await Promise.all([
         getTrendingMovies(),
         getPopularMovies(),
         getTopRatedMovies(),
+        getOnAirTV(),
         getUpcomingMovies(),
         getNowPlayingMovies()
       ])
@@ -42,6 +46,7 @@ const HomePage = () => {
         trending,
         popular,
         topRated,
+        onAir,
         upComing,
         nowPlaying
       })
