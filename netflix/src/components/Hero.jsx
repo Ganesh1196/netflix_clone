@@ -1,27 +1,46 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { getMovieVideo, getTvVideo } from '../utils/tmdbapi'
 
-const Hero = () => {
+
+const Hero = ({ heroItem }) => {
+  const [movieVideo, setMovieVideo] = useState([])
+
+
+  useEffect(() => {
+    if (!heroItem) return
+    async function fetchVideoData() {
+      let videos = []
+      if (heroItem.media_type === "movie") {
+        videos = await getMovieVideo(heroItem.id)
+      }
+      else if (heroItem.media_type === "tv") {
+        videos = await getTvVideo(heroItem.id)
+      }
+
+      setMovieVideo(videos)
+    }
+    fetchVideoData()
+  }, [heroItem])
+console.log(movieVideo[0]?.key)
   return (
     <div className="w-full h-[50rem]">
-  {/* Video */}
-  <video
-    autoPlay
-    loop
-    muted
-    src="./src/assets/demo.mp4"
-    className="absolute top-0 left-0 w-full h-full object-cover"
-  ></video>
+      {/* Video */}
+      <iframe
+  src={`https://www.youtube-nocookie.com/embed/${movieVideo[0]?.key}?autoplay=1&mute=1&controls=0&showinfo=0&modestbranding=1&rel=0&loop=1&playlist=${movieVideo[0]?.key}`}
+  allow="autoplay"
+  className="absolute top-0 left-0 w-full h-full object-cover"
+></iframe>
 
-  {/* Gradient overlay */}
+  {/* Gradient overlay */ }
   <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-[#141414] via-transparent to-transparent pointer-events-none"></div>
-
-  {/* Title */}
-  <h1 className="absolute bottom-96 left-28 text-[2.5rem] md:text-6xl font-bold text-white">
-    The Train
+<div className='absolute bottom-80 left-28 '>
+  {/* Title */ }
+  <h1 className="text-[2.5rem] md:text-6xl font-bold text-white">
+    {heroItem?.name || heroItem?.title}
   </h1>
-
-  {/* Buttons */}
-  <div className="absolute bottom-80 left-28 flex space-x-4">
+    <p className="mt-4 mb-3 text-white font-normal leading-normal line-clamp-3 max-w-[40%] text-[1.2vw]">{heroItem?.overview}</p>
+  {/* Buttons */ }
+  <div className=" left-28 flex space-x-4">
     {/* Play Button */}
     <button className="flex items-center bg-white text-black px-8 py-3 text-xl font-medium rounded hover:bg-gray-200 transition">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" className="w-8 h-8 mr-3">
@@ -44,7 +63,8 @@ const Hero = () => {
       More Info
     </button>
   </div>
-</div>
+  </div>
+</div >
 
   )
 }

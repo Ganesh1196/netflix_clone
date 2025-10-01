@@ -11,6 +11,9 @@ const tvCategories = {
 }
 
 const ShowsPage = () => {
+
+  const [heroItem, setHeroItem] = useState(null)
+
   const [tvByCategores, setTvByCategories] = useState({
     trending: [],
     popular: [],
@@ -26,6 +29,10 @@ const ShowsPage = () => {
         getTopRatedTV(),
         getOnAirTV(),
       ])
+      if(trending.length > 0 ){
+          const randomIndex = Math.floor(Math.random() * trending.length)
+          setHeroItem(trending[randomIndex])
+        }
       setTvByCategories({
         trending,
         popular,
@@ -38,7 +45,7 @@ const ShowsPage = () => {
 
   return (
     <div className='min-h-screen'>
-      <Hero />
+      <Hero heroItem={heroItem} />
       {Object.keys(tvCategories).map(key=>(
         <MovieRow
         key={key}

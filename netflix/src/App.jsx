@@ -6,6 +6,7 @@ import ShowsPage from './pages/ShowsPage'
 import MylistPage from './pages/MylistPage'
 import MovieDetailPage from './pages/MovieDetailPage'
 import Header from './components/Header'
+import Footer from './components/Footer'
 const App = () => {
   return ( <>
     <Header />
@@ -19,6 +20,7 @@ const App = () => {
         <Route path='/movie/:id' element={<MovieDetailPage/>}/>
       </Routes>
     </div>
+    <Footer/>
     </>
   )
 }

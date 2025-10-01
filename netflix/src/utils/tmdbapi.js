@@ -13,6 +13,34 @@ const tmbd = axios.create({
   },
 })
 
+export async function getMovieVideo(movieId) {
+  try {
+    const response = await tmbd.get(`/movie/${movieId}/videos`)
+    return response.data.results
+  } catch (error) {
+    console.log("Error fetching Movie video data")
+  }
+}
+
+export async function getTvVideo(tvId) {
+  try {
+    const response = await tmbd.get(`/tv/${tvId}/videos`)
+    return response.data.results
+  } catch (error) {
+    console.log("Error fetching TV video data")
+  }
+}
+
+export async function getTrendingAll() {
+  try {
+    const response = await tmbd.get("/trending/all/day")
+    return response.data.results //array of movies and tv shows trending for the day
+
+  } catch (error) {
+    console.log("Error fetching trending all movies and tv shows: " + error)
+  }
+}
+
 export async function getTrendingMovies() {
   try {
     const response = await tmbd.get("/trending/movie/day")
