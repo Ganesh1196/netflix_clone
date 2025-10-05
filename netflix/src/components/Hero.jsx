@@ -28,7 +28,7 @@ console.log(movieVideo[0]?.key)
       <iframe
   src={`https://www.youtube-nocookie.com/embed/${movieVideo[0]?.key}?autoplay=1&mute=1&controls=0&showinfo=0&modestbranding=1&rel=0&loop=1&playlist=${movieVideo[0]?.key}`}
   allow="autoplay"
-  className="absolute top-0 left-0 w-full h-full object-cover"
+  className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none"
 ></iframe>
 
   {/* Gradient overlay */ }

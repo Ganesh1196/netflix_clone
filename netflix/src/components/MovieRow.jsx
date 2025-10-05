@@ -7,7 +7,7 @@ const MovieRow = ({ key, title, movies }) => {
 
 
   return (
-    <div className='px-[4%] relative z-20'>
+    <div className='px-[4%] relative z-20 -mb-12'>
       <p className='text-white font-medium text-[1.625rem] mb-2 '>{title}</p>
       <div className='w-full h-72'>
 

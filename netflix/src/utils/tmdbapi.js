@@ -13,12 +13,23 @@ const tmbd = axios.create({
   },
 })
 
+export async function getSearchResults(search) {
+  try {
+    const response = await tmbd.get(`/search/multi`, {
+      params: { query: search },
+    })
+    return response.data.results
+  } catch (error) {
+    console.log("Error fetching search data", error)
+  }
+}
+
 export async function getMovieVideo(movieId) {
   try {
     const response = await tmbd.get(`/movie/${movieId}/videos`)
     return response.data.results
   } catch (error) {
-    console.log("Error fetching Movie video data")
+    console.log("Error fetching Movie video data", error)
   }
 }
 
@@ -27,7 +38,7 @@ export async function getTvVideo(tvId) {
     const response = await tmbd.get(`/tv/${tvId}/videos`)
     return response.data.results
   } catch (error) {
-    console.log("Error fetching TV video data")
+    console.log("Error fetching TV video data", error)
   }
 }
 

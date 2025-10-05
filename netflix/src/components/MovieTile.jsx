@@ -2,7 +2,7 @@ import React from 'react'
 
 const MovieTile = ({imagesrc, title}) => {
   return (
-    <div className="flex-shrink-0 w-[60%] sm:w-[30%] md:w-[20%] lg:w-[17%] bg-[#141414] rounded-md overflow-hidden cursor-pointer hover:scale-105 transform transition duration-300">
+    <div className="flex-shrink-0 w-full sm:w-[30%] md:w-[20%] lg:w-[17%] bg-[#141414] rounded-md overflow-hidden cursor-pointer hover:scale-105 transform transition duration-300">
       <img
         src={imagesrc}
         alt="movie poster"
