@@ -1,8 +1,30 @@
 import { useEffect, useState } from "react";
 import { getSearchResults } from "../utils/tmdbapi";
+import { useNavigate } from "react-router-dom";
 
-export default function HeaderSearch({searchValue, setSearchValue } ) {
-  const [isSearching, setIsSearching] = useState(false);
+
+export default function HeaderSearch({ searchValue, setSearchValue, isSearching, setIsSearching }) {
+  
+  const navigate = useNavigate();
+  
+  
+  useEffect(() => {
+    if (searchValue.trim() !== "" && location.pathname !== "/search") {
+      navigate("/search");
+    }
+  }, [searchValue, navigate, location.pathname]);
+  
+  
+  const handleClose = () => {
+    setIsSearching(false);
+    setSearchValue("");
+
+    // If we are on the search page, go back to home
+    if (window.location.pathname === "/search") {
+      navigate("/");
+    }
+  };
+  
   return (
 
     <div className="flex items-center space-x-2 relative">
@@ -33,7 +55,7 @@ export default function HeaderSearch({searchValue, setSearchValue } ) {
         </svg>
       ) : (
         <svg
-          onClick={() => setIsSearching(false)}
+          onClick={handleClose}
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6 text-white cursor-pointer"
           fill="none"
@@ -43,7 +65,7 @@ export default function HeaderSearch({searchValue, setSearchValue } ) {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
         </svg>
       )}
-     
+
     </div>
   );
 }

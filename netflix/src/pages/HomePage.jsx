@@ -22,7 +22,7 @@ const categories = {
 
 
 
-const HomePage = ({ searchedMovies }) => {
+const HomePage = ({ searchedMovies, isSearching }) => {
 
   const [heroItem, setHeroItem] = useState(null)
   const [moviesByCategories, setMoviesByCategories] = useState({
@@ -65,8 +65,7 @@ const HomePage = ({ searchedMovies }) => {
 
   return (
     <div className="min-h-screen">
-      {searchedMovies.length > 0 ? (<MovieGrid movies={searchedMovies} />
-      ) : (<>
+      <>
         <Hero heroItem={heroItem} />
         {Object.keys(categories).map(key => (
           <MovieRow
@@ -76,9 +75,7 @@ const HomePage = ({ searchedMovies }) => {
         ))
 
         }
-      </>)
-      }
-
+      </>
     </div>
   )
 }

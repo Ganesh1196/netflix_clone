@@ -1,8 +1,20 @@
 import React from 'react'
 import MovieTile from './MovieTile'
 
-const MovieGrid = ( {movies} ) => {
-  if (!movies || movies.length === 0) return null
+const MovieGrid = ( {movies, searchValue } ) => {
+  if (!movies || movies.length === 0) {
+    let search = ""
+    if (searchValue === ""){
+      search = "Please add value in search bar"
+    }
+    else {search = `Your search for "${searchValue}" did not find any matches.`}
+     return (
+      <div className="text-center text-gray-400 py-40">
+        <p className="text-xl">{search}</p>
+        <p className="text-lg">Try searching for another movie or show.</p>
+      </div>
+    );
+  }
   return (
     <div className=" px-8 py-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 w-full">
       {movies.map(movie => {

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Hero from '../components/Hero'
 import HeaderSearch from './HeaderSearch'
-const Header = ({searchValue, setSearchValue}) => {
+const Header = ({searchValue, setSearchValue, isSearching, setIsSearching}) => {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false)
 
   const links = [
@@ -30,7 +30,7 @@ const Header = ({searchValue, setSearchValue}) => {
           ))}
         </div>
         <div className='flex items-center justify-end w-[50%]'>
-          <HeaderSearch searchValue={searchValue} setSearchValue={setSearchValue}/>
+          <HeaderSearch searchValue={searchValue} setSearchValue={setSearchValue} isSearching={isSearching} setIsSearching={setIsSearching}/>
           <p className='text-white text-[1.1rem] p-4 cursor-pointer'>Children</p>
           <div className='group flex items-center p-4 cursor-pointer' onMouseEnter={toggleDropDown}>
             <img src="./src/assets/blue-profile-icon.jpg" alt="profile-icon" className='w-10 h-10-3 rounded-md mr-1' />
