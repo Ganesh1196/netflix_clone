@@ -1,12 +1,20 @@
-# React + Vite
+🎬 Netflix Clone (React + Tailwind + Firebase + TMDB API)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fully responsive Netflix Clone built with React.js, Tailwind CSS, Firebase, and The Movie Database (TMDB) API.
+It recreates the Netflix user experience — with trending shows, movie details, search functionality, and a sleek modern UI. Firebase is integrated for authentication and backend scalability.
 
-Currently, two official plugins are available:
+🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🎥 Dynamic movie and TV show data from TMDB API
 
-## Expanding the ESLint configuration
+🔍 Live Search — instantly fetches and displays movie results in a Netflix-style grid
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🏠 Netflix-inspired homepage with hero section and multiple movie rows
+
+🔐 Firebase Authentication (email/password or Google Sign-In)
+
+🧭 Smooth navigation using React Router
+
+📱 Fully responsive layout using Tailwind CSS
+
+🧠 Clean and modular code structure for scalability
