@@ -1,9 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import Hero from '../components/Hero'
 import HeaderSearch from './HeaderSearch'
-const Header = ({searchValue, setSearchValue, isSearching, setIsSearching}) => {
+const Header = ({ searchValue, setSearchValue, isSearching, setIsSearching }) => {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false)
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+     const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const links = [
     { to: "/", label: "Home" },
@@ -11,6 +26,9 @@ const Header = ({searchValue, setSearchValue, isSearching, setIsSearching}) => {
     { to: "/movies", label: "Movies" },
     { to: "/my-list", label: "MyList" },
   ]
+
+
+
   const toggleDropDown = () => setIsDropDownOpen(!isDropDownOpen)
   const navItemStyle = ({ isActive }) => {
     return `${isActive ? "text-white transition-colors duration-500 pl-4 m-1 cursor-pointer text-[1.1rem]"
@@ -18,7 +36,9 @@ const Header = ({searchValue, setSearchValue, isSearching, setIsSearching}) => {
   }
   return (
     <>
-      <div className='bg-gradient-to-b from-black/80 to-transparent flex pl-11 pr-11 justify-between fixed z-50 w-full'>
+      <div className={`flex pl-11 pr-11 justify-between fixed z-50 w-full transition-colors duration-500 ${
+  isScrolled ? 'bg-black' : 'bg-gradient-to-b from-black/80 to-transparent'
+}`}>
         <div >
           <img className="w-25 h-8 pr-4 align-middle m-6 cursor-pointer" src="https://images.ctfassets.net/y2ske730sjqp/821Wg4N9hJD8vs5FBcCGg/9eaf66123397cc61be14e40174123c40/Vector__3_.svg?w=460" alt="Netflix" />
         </div>
@@ -30,7 +50,7 @@ const Header = ({searchValue, setSearchValue, isSearching, setIsSearching}) => {
           ))}
         </div>
         <div className='flex items-center justify-end w-[50%]'>
-          <HeaderSearch searchValue={searchValue} setSearchValue={setSearchValue} isSearching={isSearching} setIsSearching={setIsSearching}/>
+          <HeaderSearch searchValue={searchValue} setSearchValue={setSearchValue} isSearching={isSearching} setIsSearching={setIsSearching} />
           <p className='text-white text-[1.1rem] p-4 cursor-pointer'>Children</p>
           <div className='group flex items-center p-4 cursor-pointer' onMouseEnter={toggleDropDown}>
             <img src="./src/assets/blue-profile-icon.jpg" alt="profile-icon" className='w-10 h-10-3 rounded-md mr-1' />
@@ -41,7 +61,7 @@ const Header = ({searchValue, setSearchValue, isSearching, setIsSearching}) => {
 
           {/*Drop Down Menu*/}
 
-          {isDropDownOpen && (<div onMouseLeave={toggleDropDown} className="dropdown-menu absolute bg-black opacity-90 w-60 right-20 mt-[240px] transition-all duration-500 ease-in-out shadow-lg" >
+          {isDropDownOpen && (<div onMouseLeave={toggleDropDown} className="dropdown-menu absolute bg-black opacity-90 w-60 right-20 top-20 transition-all duration-500 ease-in-out shadow-lg" >
             <ul>
               <li className='flex items-center m-2 pt-2 pb-2 pl-1'>
                 <img src="./src/assets/blue-profile-icon.jpg" alt="profile-icon" className='w-10 h-10-3 rounded-md mr-1' />
@@ -62,7 +82,7 @@ const Header = ({searchValue, setSearchValue, isSearching, setIsSearching}) => {
           </div>
           )}
         </div>
-        
+
       </div>
 
     </>
