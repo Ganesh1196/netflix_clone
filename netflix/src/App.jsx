@@ -9,7 +9,10 @@ import MovieDetailPage from './pages/MovieDetailPage'
 import SearchPage from './pages/SearchPage'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import NotFoundPage from './pages/NotFoundPage'
 import { getSearchResults } from './utils/tmdbapi'
+import SignUpPage from './pages/SignupPage'
+import LoginPage from './pages/LoginPage'
 const App = () => {
 
   const [isSearching, setIsSearching] = useState(false);
@@ -44,6 +47,9 @@ const App = () => {
     <div >
       
       <Routes>
+        <Route path='*' element={<NotFoundPage />} />
+        <Route path='/signup' element={<SignUpPage />}/>
+        <Route path='/login' element={<LoginPage />}/>
         <Route path='/' element={<HomePage searchedMovies={searchedMovies} isSearching={isSearching} />} />
         <Route path='/movies' element={<MoviesPage />}/>
         <Route path='/shows' element={<ShowsPage/>}/>

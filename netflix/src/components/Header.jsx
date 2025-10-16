@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from "react-router-dom";
 import { NavLink } from 'react-router-dom'
 import Hero from '../components/Hero'
 import HeaderSearch from './HeaderSearch'
@@ -40,7 +41,9 @@ const Header = ({ searchValue, setSearchValue, isSearching, setIsSearching }) =>
   isScrolled ? 'bg-black' : 'bg-gradient-to-b from-black/80 to-transparent'
 }`}>
         <div >
-          <img className="w-25 h-8 pr-4 align-middle m-6 cursor-pointer" src="https://images.ctfassets.net/y2ske730sjqp/821Wg4N9hJD8vs5FBcCGg/9eaf66123397cc61be14e40174123c40/Vector__3_.svg?w=460" alt="Netflix" />
+          <Link to={"/"}>
+          <img className="w-32 align-middle m-6 cursor-pointer" src="./src/assets/netflix-logo.png" alt="Netflix" />
+          </Link>
         </div>
         <div className='flex items-center justify-start w-[50%]'>
           {links.map(link => (

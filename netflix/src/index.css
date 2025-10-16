@@ -7,6 +7,10 @@ html {
   background-color: #141414;
 }
 
+.hero-bg {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url("./src/assets/hero.png");
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
